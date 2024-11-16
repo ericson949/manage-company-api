@@ -1,4 +1,3 @@
-
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DataSource, Repository } from 'typeorm';
@@ -9,7 +8,7 @@ export class UsersService {
   constructor(
     @InjectRepository(User)
     private usersRepository: Repository<User>,
-    private dataSource: DataSource
+    private dataSource: DataSource,
   ) {}
 
   async create(username: string, password: string): Promise<boolean> {
@@ -17,13 +16,13 @@ export class UsersService {
     user.username = username;
     user.password = password;
 
-    await this.dataSource.transaction(async manager => {
+    await this.dataSource.transaction(async (manager) => {
       await manager.save(user);
     });
-    return true
+    return true;
   }
 
-  findByUsername(username: string): Promise<User|null> {
+  findByUsername(username: string): Promise<User | null> {
     return this.usersRepository.findOneBy({ username });
   }
 }

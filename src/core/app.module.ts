@@ -1,10 +1,12 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AuthModule } from './auth/auth.module';
-import { UsersModule } from './users/users.module';
+import { AuthModule } from '../auth/auth.module';
+import { UsersModule } from '../users/users.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { databaseConfig } from './core/config/database.config';
-import { validateEnv } from './core/config/env.validation';
+import { databaseConfig } from './config/database.config';
+import { validateEnv } from './config/env.validation';
+import { FileUploadService } from './commons/services/file-upload.service';
+import { CompanyModule } from '../company/company.module';
 
 @Module({
   imports: [
@@ -21,7 +23,7 @@ import { validateEnv } from './core/config/env.validation';
     }),
     AuthModule,
     UsersModule,
-    // ConnectionsModule,
+    CompanyModule,
   ],
   providers: [],
 })

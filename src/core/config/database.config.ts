@@ -7,7 +7,7 @@ export const databaseConfig = registerAs('database', () => ({
   port: parseInt(process.env.DATABASE_PORT, 10),
   username: process.env.DATABASE_USERNAME,
   password: process.env.DATABASE_PASSWORD,
-  database: process.env.DATABASE_NAME, 
+  database: process.env.DATABASE_NAME,
   entities: ['dist/**/*.entity{.ts,.js}'],
   ssl: {
     ca: fs.readFileSync(process.env.DATABASE_SSL).toString(),
@@ -18,6 +18,6 @@ export const databaseConfig = registerAs('database', () => ({
       rejectUnauthorized: false,
     },
   },
-  synchronize:true,
-//   synchronize: process.env.NODE_ENV !== 'production',
+  synchronize: true,
+  //   synchronize: process.env.NODE_ENV !== 'production',
 }));
